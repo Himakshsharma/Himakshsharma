@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Himaksh Sharma — AI & ML Engineer</title>
+<meta name="description" content="Himaksh Sharma, AI & ML engineer from Delhi NCR. CSE (AI & ML) at SRMIST, SAP Intern at Ancorotti Cosmetics. Projects: AROGYA, LAWTRACE, SPLICE.">
+<meta property="og:title" content="Himaksh Sharma — AI & ML Engineer">
+<meta property="og:description" content="I build AI that would rather be used than explained.">
+<meta property="og:image" content="assets/himaksh.jpg">
+<meta name="theme-color" content="#e9e8e3">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Ctext x='32' y='43' font-family='Arial Narrow,Arial' font-weight='900' font-size='30' text-anchor='middle' fill='%23efeeea'%3EHS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a foldable phone, unfolded in landscape, sits centred on a warm grey desk; the portfolio lives on its
+   inner screen as four swipeable pages with dots beneath. Folded mode shows the cover screen; Page mode (and phones)
+   drops the device and stacks the pages as a normal scrolling site. */
+:root{
+  --desk:#e9e8e3;
+  --screen:#efeeea;
+  --ink:#121212;
+  --ink-2:#3b3a37;
+  --grey:#8d8b85;
+  --pill:#e1e0da;
+  --line:#d8d6cf;
+  --peach:#e9a07a;
+  --rose:#e8b2c0;
+  --f-display:"Archivo","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.65,.05,.2,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--desk);color:var(--ink);font-family:var(--f-body);font-variation-settings:"wdth" 100;-webkit-font-smoothing:antialiased}
+body:not(.flat){height:100vh;height:100dvh;overflow:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.mono{font-family:var(--f-mono);font-size:var(--mono-size,11px);letter-spacing:.08em;text-transform:uppercase}
+.disp{font-family:var(--f-display);font-weight:850;font-variation-settings:"wdth" 62;text-transform:uppercase;letter-spacing:-.01em;line-height:.86;margin:0}
+
+/* ---------- desk chrome ---------- */
+.chrome{position:fixed;inset:0 0 auto;display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) 14px max(20px,env(safe-area-inset-left));z-index:20;pointer-events:none}
+.chrome > *{pointer-events:auto}
+.sig{color:var(--grey);--mono-size:10.5px}
+.sig b{color:var(--ink);font-weight:500}
+.seg{display:flex;gap:3px;background:var(--pill);padding:3px;border-radius:999px}
+.seg button{border:0;background:transparent;border-radius:999px;padding:5px 11px;cursor:pointer;font:500 11px var(--f-body);color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+.stage{position:fixed;inset:0;display:grid;place-items:center;align-content:center;gap:22px;perspective:2200px}
+
+/* ---------- the device ---------- */
+.device{--w:min(1120px,90vw,calc((100dvh - 150px) * 1.6));width:var(--w);aspect-ratio:1.6/1;position:relative;border-radius:calc(var(--w) * .032);background:#0d0d0e;padding:calc(var(--w) * .009);
+  box-shadow:0 1px 0 1px #2a2a2c inset,0 40px 80px -30px rgba(40,35,25,.45),0 18px 30px -18px rgba(40,35,25,.35);transition:width .9s var(--ease),transform .9s var(--ease),border-radius .9s var(--ease)}
+.screen{position:relative;width:100%;height:100%;border-radius:calc(var(--w) * .024);background:var(--screen);overflow:hidden;container-type:size}
+.crease{position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.06) 20%,rgba(0,0,0,.06) 80%,transparent);z-index:6;pointer-events:none}
+.status{position:absolute;inset:0 0 auto;height:6.2cqh;display:flex;justify-content:space-between;align-items:center;padding:0 3cqw;font:600 1.15cqw var(--f-body);z-index:8;pointer-events:none}
+.status .r{display:flex;align-items:center;gap:.5cqw;font-size:.95cqw}
+.batt{width:2.1cqw;height:1cqw;border:1.5px solid var(--ink);border-radius:3px;position:relative;padding:1.5px}
+.batt::before{content:"";display:block;height:100%;width:72%;background:var(--ink);border-radius:1px}
+.batt::after{content:"";position:absolute;right:-3.5px;top:30%;height:40%;width:2px;background:var(--ink);border-radius:0 2px 2px 0}
+.cam{position:absolute;top:2cqh;left:75%;width:.9cqw;height:.9cqw;border-radius:50%;background:#1a1a1c;z-index:9}
+
+.track{position:absolute;inset:0;display:flex;transition:transform .8s var(--ease)}
+.page{flex:0 0 100%;height:100%;position:relative;overflow:hidden}
+
+/* page 1: hero */
+.hero .copy{position:absolute;left:3.4cqw;top:10cqh;bottom:7cqh;width:52cqw;display:flex;flex-direction:column;justify-content:space-between;z-index:2}
+.hero .copy .mono{--mono-size:1cqw;color:var(--ink-2)}
+.hero h1{font-size:9.3cqw;white-space:nowrap}
+.hero .tag{font-size:1.38cqw;line-height:1.45;color:var(--grey);max-width:30cqw;margin:2.4cqh 0 3.6cqh}
+.btns{display:flex;gap:.8cqw;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5em;font:500 1.25cqw var(--f-body);padding:1.1cqw 1.8cqw;border-radius:999px;border:0;cursor:pointer;transition:transform .25s var(--ease),background .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn.dark{background:var(--ink);color:#fff}
+.btn.light{background:var(--pill);color:var(--ink)}
+.btn.light:hover{background:#d6d5ce}
+.hero .photo{position:absolute;right:0;bottom:0;top:0;width:47cqw;background:var(--screen) url(assets/himaksh.jpg) 50% 18%/cover no-repeat}
+.hero .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--screen) 0%,rgba(239,238,234,0) 22%)}
+.hero .now{position:absolute;right:2.4cqw;bottom:4cqh;z-index:3;display:flex;align-items:center;gap:.6cqw;background:rgba(239,238,234,.86);backdrop-filter:blur(6px);padding:.6cqw 1cqw;border-radius:999px;--mono-size:.85cqw}
+.now i{width:.6cqw;height:.6cqw;border-radius:50%;background:#2fbf71;box-shadow:0 0 0 .3cqw rgba(47,191,113,.18)}
+
+/* page 2: work */
+.work{display:grid;grid-template-columns:58cqw 1fr}
+.work .list{padding:10cqh 2.4cqw 6cqh 3.4cqw;display:flex;flex-direction:column;min-height:0}
+.work .head{display:flex;justify-content:space-between;align-items:end;margin-bottom:2.2cqh}
+.work .head .mono{--mono-size:1cqw;color:var(--ink-2)}
+.work h2{font-size:6.2cqw}
+.rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--line);flex:1;display:flex;flex-direction:column}
+.row{flex:1;display:grid;grid-template-columns:3.4cqw 1fr auto 2cqw;align-items:center;gap:1cqw;border-bottom:1px solid var(--line);cursor:pointer;padding:0 .4cqw;transition:background .25s,padding .3s var(--ease)}
+.row .n{font:500 .95cqw var(--f-mono);color:var(--grey)}
+.row .t{font:850 2.5cqw/1 var(--f-display);font-variation-settings:"wdth" 62;text-transform:uppercase}
+.row .c{font:400 .9cqw var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--grey);white-space:nowrap}
+.row .a{font-size:1.4cqw;transition:transform .3s var(--ease)}
+.row:hover,.row.on{background:rgba(0,0,0,.035);padding-left:1cqw}
+.row:hover .a,.row.on .a{transform:rotate(-45deg)}
+.live-dot{display:inline-block;width:.55cqw;height:.55cqw;border-radius:50%;background:#2fbf71;margin-right:.5cqw;vertical-align:.12cqw}
+.preview{background:#e6e5df;position:relative;padding:10cqh 2.8cqw 6cqh;display:flex;flex-direction:column;gap:2.2cqh;min-width:0}
+.preview .kick{--mono-size:.9cqw;color:var(--grey)}
+.preview h3{font-size:5.2cqw}
+.preview p{font-size:1.25cqw;line-height:1.5;color:var(--ink-2);margin:0}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:.6cqw}
+.metric{background:var(--screen);border-radius:1cqw;padding:1.1cqw;display:flex;flex-direction:column;gap:.4cqh}
+.metric b{font:850 2.4cqw/1 var(--f-display);font-variation-settings:"wdth" 70}
+.metric span{font-size:.85cqw;color:var(--grey);line-height:1.3}
+.stack{display:flex;flex-wrap:wrap;gap:.4cqw}
+.stack span{font:400 .85cqw var(--f-mono);padding:.35cqw .6cqw;border:1px solid var(--line);border-radius:999px;color:var(--ink-2);background:var(--screen)}
+.preview .btns{margin-top:auto}
+
+/* page 3: about */
+.about{display:grid;grid-template-columns:1fr 1fr}
+.about .l{padding:10cqh 3cqw 6cqh 3.4cqw;display:flex;flex-direction:column;gap:2.6cqh;min-width:0}
+.about .l .mono{--mono-size:1cqw;color:var(--ink-2)}
+.about h2{font-size:5.6cqw}
+.about p{font-size:1.28cqw;line-height:1.55;color:var(--ink-2);margin:0;max-width:40cqw}
+.xp{list-style:none;margin:auto 0 0;padding:0;border-top:1px solid var(--line)}
+.xp li{display:grid;grid-template-columns:11cqw 1fr;gap:1cqw;padding:1.3cqh 0;border-bottom:1px solid var(--line);font-size:1.12cqw;align-items:baseline}
+.xp .when{font:400 .88cqw var(--f-mono);color:var(--grey);text-transform:uppercase}
+.xp b{font-weight:600}
+.xp span{color:var(--grey)}
+.about .r{background:var(--ink);color:#efeeea;padding:10cqh 3cqw 6cqh;display:grid;grid-template-columns:1fr 1fr;gap:3cqh 2.4cqw;align-content:start}
+.about .r h4{font:500 .9cqw var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:#8d8b85;margin:0 0 1cqh}
+.about .r ul{list-style:none;margin:0;padding:0;font-size:1.18cqw;line-height:1.75}
+.about .r .wide{grid-column:1/-1;border-top:1px solid #2c2c2c;padding-top:2.4cqh}
+.about .r .wide li{display:flex;justify-content:space-between;gap:1cqw}
+.about .r .wide li span{color:#8d8b85;font:400 .9cqw var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
+
+/* page 4: contact */
+.contact{display:grid;grid-template-columns:58cqw 1fr}
+.contact .l{padding:10cqh 3cqw 7cqh 3.4cqw;display:flex;flex-direction:column;justify-content:space-between}
+.contact .l .mono{--mono-size:1cqw;color:var(--ink-2)}
+.contact h2{font-size:13cqw;line-height:.82}
+.mail{font:600 2.3cqw var(--f-body);letter-spacing:-.01em;display:inline-flex;align-items:center;gap:1cqw;border-bottom:2px solid var(--ink);padding-bottom:.3cqh;width:max-content}
+.links{display:flex;gap:.6cqw;flex-wrap:wrap}
+.contact .r{position:relative;background:var(--peach);overflow:hidden}
+.contact .r .big{position:absolute;left:-1.5cqw;bottom:-3.5cqw;font-size:31cqw;color:var(--ink);line-height:.78}
+.contact .r .mono{position:absolute;left:2.4cqw;top:10cqh;right:2.4cqw;display:flex;flex-direction:column;gap:1.2cqh;--mono-size:.95cqw}
+.contact .r .mono b{font-weight:500;font-size:1.6cqw;letter-spacing:.02em}
+
+/* project detail sheet */
+.sheet{position:absolute;inset:0;z-index:12;background:var(--screen);transform:translateY(100%);transition:transform .7s var(--ease);display:grid;grid-template-columns:1.1fr 1fr;overflow:hidden}
+.sheet.open{transform:none}
+.sheet .l{padding:9cqh 3cqw 6cqh 3.4cqw;display:flex;flex-direction:column;gap:2cqh;min-width:0;overflow:auto}
+.sheet .r{background:#e6e5df;padding:9cqh 2.8cqw 6cqh;display:flex;flex-direction:column;gap:2.2cqh;overflow:auto}
+.sheet h3{font-size:8cqw}
+.sheet p{font-size:1.25cqw;line-height:1.55;color:var(--ink-2);margin:0}
+.sheet h4{font:500 .9cqw var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin:0}
+.sheet ul{margin:0;padding-left:1.2em;font-size:1.15cqw;line-height:1.55;color:var(--ink-2);display:flex;flex-direction:column;gap:.6cqh}
+.pipe{display:flex;flex-wrap:wrap;gap:.4cqw;align-items:center;font:400 .85cqw var(--f-mono);text-transform:uppercase}
+.pipe span{background:var(--screen);padding:.4cqw .7cqw;border-radius:.5cqw}
+.close{position:absolute;top:8cqh;right:2.4cqw;z-index:2;width:3.4cqw;height:3.4cqw;border-radius:50%;border:0;background:var(--ink);color:#fff;font-size:1.6cqw;cursor:pointer;display:grid;place-items:center}
+
+/* cover screen (folded) */
+.cover{position:absolute;inset:0;z-index:15;background:var(--screen);opacity:0;pointer-events:none;transition:opacity .45s;overflow:hidden;container-type:size}
+.cover .big{position:absolute;left:-5cqw;top:16cqh;font-size:66cqh;line-height:.78;writing-mode:horizontal-tb;white-space:nowrap}
+.cover .t{position:absolute;left:7cqw;top:5cqh;font:600 5cqw var(--f-body)}
+.cover .mono{position:absolute;left:7cqw;bottom:13cqh;--mono-size:3.6cqw;color:var(--ink-2);line-height:1.6}
+.cover .btn{position:absolute;left:7cqw;bottom:5cqh;font-size:4cqw;padding:2.6cqw 4.4cqw}
+
+/* ---------- dots ---------- */
+.dots{display:flex;gap:9px;align-items:center;justify-content:center;transition:opacity .4s}
+.dots button{width:9px;height:9px;border-radius:50%;border:0;padding:0;cursor:pointer;background:var(--c);transition:transform .3s,box-shadow .3s}
+.dots button[aria-current="true"]{box-shadow:0 0 0 2px var(--desk),0 0 0 3.5px var(--ink)}
+.dots button:hover{transform:scale(1.25)}
+.hint{color:var(--grey);--mono-size:10px;text-align:center;transition:opacity .4s}
+
+/* ---------- folded mode ---------- */
+body.folded .device{--w:calc(min(1120px,90vw,calc((100dvh - 150px) * 1.6)) * .34);aspect-ratio:.54/1;height:auto;transform:rotateY(-8deg) rotateX(2deg)}
+body.folded .device{width:min(330px,70vw)}
+body.folded .cover{opacity:1;pointer-events:auto}
+body.folded .dots,body.folded .hint{opacity:0;pointer-events:none}
+
+/* ---------- page mode + phones: no device, stacked site ---------- */
+body.flat .stage{position:static;display:block;perspective:none;padding-top:calc(56px + env(safe-area-inset-top))}
+body.flat .device{width:100%;aspect-ratio:auto;padding:0;background:transparent;box-shadow:none;border-radius:0;--w:100vw}
+body.flat .screen{height:auto;border-radius:0;container-type:normal;background:var(--desk)}
+body.flat .crease,body.flat .status,body.flat .cam,body.flat .cover,body.flat .dots,body.flat .hint{display:none}
+body.flat .track{position:static;display:block;transform:none!important}
+body.flat .page{height:auto;overflow:visible;padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right));max-width:1200px;margin:0 auto}
+body.flat .hero{display:grid;grid-template-columns:1.1fr 1fr;gap:4vw;align-items:end;min-height:calc(100svh - 56px);padding-bottom:48px}
+body.flat .hero .copy{position:static;width:auto;gap:28px;padding-top:4vh}
+body.flat .hero .copy .mono{--mono-size:11px}
+body.flat .hero h1{font-size:clamp(64px,10vw,150px);white-space:normal}
+body.flat .hero .tag{font-size:17px;max-width:34ch;margin:18px 0 26px}
+body.flat .btn{font-size:15px;padding:13px 22px}
+body.flat .hero .photo{position:relative;width:100%;aspect-ratio:4/5;height:auto;border-radius:20px;background-position:50% 20%}
+body.flat .hero .photo::after{display:none}
+body.flat .hero .now{right:14px;bottom:14px;--mono-size:10px;padding:7px 12px;gap:8px}
+body.flat .now i{width:7px;height:7px}
+body.flat .work,body.flat .about,body.flat .contact{display:grid;grid-template-columns:1fr 1fr;gap:0;padding-block:64px;border-top:1px solid var(--line)}
+body.flat .work .list,body.flat .about .l,body.flat .contact .l{padding:0 3vw 0 0}
+body.flat .work .head .mono,body.flat .about .l .mono,body.flat .contact .l .mono{--mono-size:11px}
+body.flat .work h2,body.flat .about h2{font-size:clamp(48px,6vw,88px)}
+body.flat .rows{flex:none}
+body.flat .row{min-height:62px;grid-template-columns:36px 1fr auto 20px;gap:12px}
+body.flat .row .n{font-size:11px}
+body.flat .row .t{font-size:clamp(22px,2.6vw,34px)}
+body.flat .row .c{font-size:10.5px}
+body.flat .row .a{font-size:18px}
+body.flat .live-dot{width:7px;height:7px;margin-right:6px;vertical-align:2px}
+body.flat .preview{border-radius:20px;padding:32px;gap:18px;align-self:start;position:sticky;top:76px}
+body.flat .preview .kick{--mono-size:10.5px}
+body.flat .preview h3{font-size:clamp(40px,5vw,72px)}
+body.flat .preview p,body.flat .about p,body.flat .sheet p{font-size:16px}
+body.flat .metric{border-radius:12px;padding:14px}
+body.flat .metric b{font-size:clamp(20px,5vw,28px)}
+body.flat .metric span{font-size:11.5px}
+body.flat .stack span{font-size:11px;padding:5px 9px}
+body.flat .metrics{gap:8px}
+body.flat .stack{gap:6px}
+body.flat .about .l{gap:22px}
+body.flat .about p{max-width:52ch}
+body.flat .xp li{font-size:15px;grid-template-columns:150px 1fr;padding:12px 0}
+body.flat .xp .when{font-size:11px}
+body.flat .about .r{border-radius:20px;padding:32px;gap:28px 24px}
+body.flat .about .r h4,body.flat .sheet h4{font-size:11px}
+body.flat .about .r ul{font-size:15px}
+body.flat .about .r .wide li span{font-size:11px}
+body.flat .contact h2{font-size:clamp(72px,13vw,190px)}
+body.flat .contact .l{gap:28px}
+body.flat .mail{font-size:clamp(18px,2.4vw,30px);gap:12px}
+body.flat .links{gap:8px}
+body.flat .contact .r{border-radius:20px;min-height:420px}
+body.flat .contact .r .big{font-size:clamp(200px,30vw,420px)}
+body.flat .contact .r .mono{--mono-size:11px;top:28px;left:28px;gap:10px}
+body.flat .contact .r .mono b{font-size:18px}
+body.flat .sheet{position:fixed;inset:0;z-index:50;grid-template-columns:1fr 1fr}
+body.flat .sheet .l,body.flat .sheet .r{padding:80px 32px 40px}
+body.flat .sheet h3{font-size:clamp(56px,8vw,120px)}
+body.flat .sheet ul{font-size:15px}
+body.flat .pipe{font-size:11px;gap:6px}
+body.flat .pipe span{padding:6px 10px;border-radius:8px}
+body.flat .close{top:calc(18px + env(safe-area-inset-top));right:18px;width:44px;height:44px;font-size:20px}
+body.flat footer{display:flex}
+body.flat .chrome{background:rgba(233,232,227,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+footer{display:none;justify-content:space-between;gap:12px;flex-wrap:wrap;max-width:1200px;margin:0 auto;padding:28px max(20px,env(safe-area-inset-right)) calc(28px + env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left));border-top:1px solid var(--line);color:var(--grey)}
+@media (max-width:820px){
+  body.flat .hero,body.flat .work,body.flat .about,body.flat .contact,body.flat .sheet{grid-template-columns:1fr}
+  body.flat .hero{min-height:auto;gap:28px;padding-bottom:40px}
+  body.flat .hero .photo{order:-1;aspect-ratio:1/1.05;border-radius:16px}
+  body.flat .hero h1{font-size:clamp(58px,19vw,120px)}
+  body.flat .work .list,body.flat .about .l,body.flat .contact .l{padding:0 0 28px}
+  body.flat .row .c{display:none}
+  body.flat .preview{position:static}
+  body.flat .contact .r{min-height:300px}
+  body.flat .sheet{overflow:auto;display:block}
+  body.flat .sheet .l{padding:76px 20px 20px}
+  body.flat .sheet .r{padding:24px 20px 40px}
+  body.flat .xp li{grid-template-columns:110px 1fr}
+  .seg [data-mode="device"],.seg [data-mode="folded"]{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="chrome">
+  <span class="sig mono"><b>Himaksh Sharma</b> · Portfolio ’26</span>
+  <div class="seg" role="group" aria-label="View">
+    <button type="button" data-mode="device" aria-pressed="true">Open</button>
+    <button type="button" data-mode="folded" aria-pressed="false">Fold</button>
+    <button type="button" data-mode="flat" aria-pressed="false">Page</button>
+  </div>
+</div>
+
+<main class="stage">
+  <div class="device" id="device">
+    <div class="screen" id="screen">
+      <div class="status"><span class="clock">09:41</span><span class="r">5G <span class="batt"></span></span></div>
+      <div class="cam" aria-hidden="true"></div>
+      <div class="crease" aria-hidden="true"></div>
+
+      <div class="track" id="track">
+        <!-- 1 · home -->
+        <section class="page hero" id="home" aria-label="Introduction">
+          <div class="copy">
+            <span class="mono">AI &amp; ML Engineer — Delhi NCR</span>
+            <div>
+              <h1 class="disp">Himaksh Sharma</h1>
+              <p class="tag">I build AI that would rather be used than explained.</p>
+              <div class="btns">
+                <button class="btn dark" type="button" data-go="1">See the work ↗</button>
+                <button class="btn light" type="button" data-go="3">Say hello</button>
+              </div>
+            </div>
+          </div>
+          <div class="photo" role="img" aria-label="Portrait of Himaksh Sharma"></div>
+          <div class="now mono"><i></i>SAP Intern @ Ancorotti</div>
+        </section>
+
+        <!-- 2 · work -->
+        <section class="page work" id="work" aria-label="Selected work">
+          <div class="list">
+            <div class="head"><h2 class="disp">Selected work</h2><span class="mono">07 projects · 2024–26</span></div>
+            <ul class="rows" id="rows"></ul>
+          </div>
+          <div class="preview" id="preview" aria-live="polite"></div>
+        </section>
+
+        <!-- 3 · about -->
+        <section class="page about" id="about" aria-label="About">
+          <div class="l">
+            <span class="mono">About — B.Tech CSE (AI &amp; ML) ’27</span>
+            <h2 class="disp">Models that<br>become products</h2>
+            <p>I study Computer Science with a specialisation in AI and ML at SRM Institute of Science and Technology, NCR Campus. I like work where a model alone isn’t enough, and it has to become something a patient, a lawyer or a creator can open and use. Everything I ship comes with tests, Docker and CI.</p>
+            <ul class="xp">
+              <li><span class="when">Sep 2026 — Now</span><div><b>SAP Intern</b> <span>· Ancorotti Cosmetics, Baddi</span></div></li>
+              <li><span class="when">2023 — 2027</span><div><b>B.Tech CSE (AI &amp; ML)</b> <span>· SRMIST · CGPA 7.59</span></div></li>
+              <li><span class="when">Oct — Nov 2023</span><div><b>Java Developer Intern</b> <span>· RineX, remote</span></div></li>
+            </ul>
+          </div>
+          <div class="r">
+            <div><h4>Languages</h4><ul><li>Python</li><li>Java</li><li>C++</li><li>TypeScript / JavaScript</li><li>SQL</li></ul></div>
+            <div><h4>AI / ML</h4><ul><li>PyTorch · TensorFlow</li><li>OpenCV · MediaPipe</li><li>RAG · LLMs · NLP</li><li>ONNX · Whisper</li><li>Scikit-learn</li></ul></div>
+            <div><h4>Build</h4><ul><li>FastAPI · React</li><li>Streamlit · Three.js</li><li>WebSockets · JWT</li><li>PostgreSQL · SQLite</li></ul></div>
+            <div><h4>Ship</h4><ul><li>Docker</li><li>GitHub Actions</li><li>pytest · Playwright</li><li>Render · Vercel</li></ul></div>
+            <div class="wide"><h4>Leadership &amp; recognition</h4><ul>
+              <li>Computer Society of India <span>PR Member</span></li>
+              <li>Epsilon Society <span>Core Member</span></li>
+              <li>Kalamgiri Parliamentary Debate <span>Runner-up</span></li>
+              <li>Full-Stack Web Dev (Udemy) · Python (HackerRank) <span>Certified</span></li>
+            </ul></div>
+          </div>
+        </section>
+
+        <!-- 4 · contact -->
+        <section class="page contact" id="contact" aria-label="Contact">
+          <div class="l">
+            <span class="mono">Contact — open to internships &amp; collabs</span>
+            <h2 class="disp">Say<br>hello.</h2>
+            <div style="display:flex;flex-direction:column;gap:2.6cqh">
+              <a class="mail" href="mailto:himaksh009@gmail.com">himaksh009@gmail.com ↗</a>
+              <div class="links">
+                <a class="btn dark" href="assets/Himaksh_Sharma_Resume.pdf" download>Download résumé</a>
+                <a class="btn light" href="https://github.com/Himakshsharma" target="_blank" rel="noopener">GitHub ↗</a>
+                <a class="btn light" href="https://www.linkedin.com/search/results/people/?keywords=Himaksh%20Sharma" target="_blank" rel="noopener">LinkedIn ↗</a>
+                <button class="btn light" type="button" id="copyMail">Copy email</button>
+              </div>
+            </div>
+          </div>
+          <div class="r" aria-hidden="true">
+            <div class="mono"><span>Based in</span><b>Delhi NCR, India</b><span>Local time</span><b class="clock">09:41</b><span>Phone</span><b>+91 98054 08114</b></div>
+            <div class="disp big">HS</div>
+          </div>
+        </section>
+      </div>
+
+      <div class="sheet" id="sheet" role="dialog" aria-modal="false" aria-labelledby="sTitle"></div>
+
+      <div class="cover" id="cover">
+        <span class="t clock">09:41</span>
+        <div class="disp big">HS</div>
+        <div class="mono">Himaksh Sharma<br>AI &amp; ML Engineer</div>
+        <button class="btn dark" type="button" data-mode="device">Unfold ↗</button>
+      </div>
+    </div>
+  </div>
+  <nav class="dots" id="dots" aria-label="Pages"></nav>
+  <div class="hint mono" id="hint">← → or scroll to turn pages</div>
+</main>
+
+<footer class="mono" style="--mono-size:10.5px"><span>© 2026 Himaksh Sharma</span><span>Delhi NCR · himaksh009@gmail.com</span></footer>
+
+<script>
+(() => {
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const PROJECTS = [
+  { id:"arogya", title:"Arogya", cat:"Accessibility · CV", sub:"Two-way Indian Sign Language doctor–patient assistant",
+    blurb:"Deaf, blind and speech-impaired patients consult doctors in Hindi or English. Speech becomes ISL on a 3D avatar; signs become text in real time.",
+    metrics:[["85","clinical ISL signs on a 3D avatar"],["ONNX","LSTM sign model in the browser"],["1-shot","new signs learned via DTW"]],
+    overview:"The doctor speaks and a Three.js avatar signs it in ISL. The patient signs back, and MediaPipe keypoints feed an LSTM that recognises the sign right in the browser.",
+    features:["Speech → ISL on a Three.js avatar covering 85 clinical signs","Sign recognition from MediaPipe keypoints with an LSTM trained on AI4Bharat INCLUDE, exported to ONNX","One-shot learning of new signs with Dynamic Time Warping","Real-time rooms over WebSockets with JWT auth","CI/CD on GitHub Actions (pytest + Playwright), Docker on Render"],
+    pipe:["Mic / camera","MediaPipe","LSTM · ONNX","WebSocket room","3D ISL avatar"],
+    stack:["Python","FastAPI","React","Three.js","MediaPipe","TensorFlow","ONNX","WebSockets","JWT","Docker"], live:"https://arogya-rgjh.onrender.com" },
+  { id:"lawtrace", title:"Lawtrace", cat:"RAG · LegalTech", sub:"RAG legal research assistant for Indian law",
+    blurb:"Answers on the Constitution, BNS, BNSS, BSA and other Acts, citing the exact section every time. Works in Hindi and Hinglish, maps IPC/CrPC to the new codes.",
+    metrics:[["96%","top-1 retrieval accuracy"],["0.98","MRR on a 56-question eval"],["35","automated tests"]],
+    overview:"Hybrid lexical retrieval with rank fusion and reranking grounds Gemini’s answers. Guardrails refuse off-topic questions and verify every citation before it reaches the user.",
+    features:["Hybrid retrieval (BM25 + TF-IDF) with rank fusion and reranking","96% top-1 accuracy, MRR 0.98 on a 56-question evaluation set","Hallucination guardrails: off-topic refusal, citation verification","IPC → BNS and CrPC → BNSS mapping, Hindi/Hinglish support","9 features including a clause simplifier and risk checker"],
+    pipe:["Query EN/HI","BM25 + TF-IDF","Rank fusion","Rerank","Gemini + cite check"],
+    stack:["Python","Streamlit","Scikit-learn","Gemini API","BM25","TF-IDF","NLP"], live:"https://lawtrace.streamlit.app" },
+  { id:"splice", title:"Splice", cat:"Speech AI · Video", sub:"AI jump-cut video editor",
+    blurb:"Upload a talking-head video and get it back without the dead air. Whisper transcribes, NumPy finds the silences, FFmpeg renders the cuts.",
+    metrics:[["85+","pytest tests"],["Whisper","speech-to-text engine"],["3D","Three.js audio view"]],
+    overview:"Jobs run through a FastAPI worker pool with a SQLite job store and rate limiting. A React + TypeScript front end shows the audio as a Three.js 3D view.",
+    features:["OpenAI Whisper speech-to-text with NumPy silence detection","Cut rendering with MoviePy and FFmpeg","FastAPI REST API, worker pool, SQLite job store, rate limiting","React + TypeScript UI with a Three.js audio view","85+ pytest tests, Docker, CI on GitHub Actions"],
+    pipe:["Upload","Whisper","Silence detection","Cut list","FFmpeg render"],
+    stack:["Python","FastAPI","Whisper","NumPy","MoviePy","FFmpeg","React","TypeScript","Docker"], live:"https://splice-chi.vercel.app" },
+  { id:"clipsmart", title:"ClipSmart", cat:"Computer vision", sub:"Audio-aware video summariser and editor",
+    blurb:"Reads both the picture and the soundtrack of long videos to pull out highlights and cut short summary clips automatically.",
+    overview:"Analyses visual streams and audio cues together to trim, extract key highlights and generate short summary clips from long-form video.",
+    features:["Speech-to-text audio segmentation","Frame and scene keyframe detection","Dynamic clipping and silence removal","Automated caption alignment"],
+    pipe:["Video","Keyframes","Speech segments","Highlight score","Summary clip"],
+    stack:["Python","OpenCV","Whisper","FFmpeg","PyTorch","Streamlit"] },
+  { id:"deepfake", title:"Deepfake Defence", cat:"Research", sub:"AI countermeasures against deepfake misinformation",
+    blurb:"Facial forensic detection that scores whether a face in a video is synthetic. Research written up in IEEE format.",
+    overview:"Deep convolutional architectures look for the spatial and temporal anomalies that give synthetic faces away, producing an authenticity score per clip.",
+    features:["Spatial and temporal anomaly detection across frames","CNN features with ResNet / EfficientNet backbones","Per-clip authenticity scoring","Paper in IEEE format"],
+    pipe:["Frames","Face crop","CNN features","Temporal check","Score"],
+    stack:["Python","PyTorch","OpenCV","CNNs","NumPy","Scikit-learn"] },
+  { id:"pricewatch", title:"PriceWatch", cat:"Automation", sub:"Price tracker with email and Telegram alerts",
+    blurb:"Watches product prices across e-commerce sites and alerts you the moment one drops, with full price history.",
+    overview:"A scheduled scraping pipeline that stores price history and fires multi-channel alerts when a price falls below target.",
+    features:["Scrapes JavaScript-rendered pages with Selenium / Playwright","Cron scheduling with anti-bot retry and backoff","Email (SMTP) and Telegram alerts","Price-history charts with Pandas and Matplotlib"],
+    pipe:["Cron","Scraper","Parse + store","Compare","Alert"],
+    stack:["Python","BeautifulSoup","Selenium","Playwright","Pandas","Telegram API"] },
+  { id:"dsa", title:"DSA Playground", cat:"EdTech", sub:"Interactive Python & DSA learning platform",
+    blurb:"Step-through algorithm visualisers, in-browser Python playgrounds and revision sheets for students.",
+    overview:"Visualisers for arrays, pointers, trees and search/sort algorithms, plus runnable Python in the browser and structured modules.",
+    features:["Visualiser for trees, arrays, pointers, search and sort","Python playgrounds in the browser via Pyodide","Structured modules with practice problems","Revision cheat sheets"],
+    pipe:["Module","Visualise","Step through","Practice","Revise"],
+    stack:["Python","Streamlit","JavaScript","Pyodide"] }
+];
+
+/* work list + preview */
+const rows = $("#rows"), preview = $("#preview");
+rows.innerHTML = PROJECTS.map((p, i) => `<li class="row" tabindex="0" data-i="${i}"><span class="n">${String(i + 1).padStart(2, "0")}</span><span class="t">${p.live ? '<span class="live-dot" title="Live"></span>' : ""}${esc(p.title)}</span><span class="c">${esc(p.cat)}</span><span class="a">→</span></li>`).join("");
+const metricsHTML = p => p.metrics ? `<div class="metrics">${p.metrics.map(([b, s]) => `<div class="metric"><b>${esc(b)}</b><span>${esc(s)}</span></div>`).join("")}</div>` : "";
+function showPreview(i) {
+  const p = PROJECTS[i];
+  $$(".row").forEach(r => r.classList.toggle("on", +r.dataset.i === i));
+  preview.innerHTML = `<span class="kick mono">${String(i + 1).padStart(2, "0")} / 07 · ${esc(p.cat)}${p.live ? " · Live" : ""}</span>
+    <h3 class="disp">${esc(p.title)}</h3><p>${esc(p.blurb)}</p>${metricsHTML(p)}
+    <div class="stack">${p.stack.map(s => `<span>${esc(s)}</span>`).join("")}</div>
+    <div class="btns"><button class="btn dark" type="button" data-open="${i}">Case study ↗</button>${p.live ? `<a class="btn light" href="${p.live}" target="_blank" rel="noopener">Live app ↗</a>` : ""}</div>`;
+}
+showPreview(0);
+rows.addEventListener("mouseover", e => { const r = e.target.closest(".row"); if (r) showPreview(+r.dataset.i); });
+rows.addEventListener("focusin", e => { const r = e.target.closest(".row"); if (r) showPreview(+r.dataset.i); });
+rows.addEventListener("click", e => { const r = e.target.closest(".row"); if (r) openSheet(+r.dataset.i); });
+rows.addEventListener("keydown", e => { const r = e.target.closest(".row"); if (r && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openSheet(+r.dataset.i); } });
+
+/* case-study sheet */
+const sheet = $("#sheet");
+function openSheet(i) {
+  const p = PROJECTS[i];
+  sheet.innerHTML = `<button class="close" type="button" aria-label="Close case study" data-close>✕</button>
+    <div class="l"><span class="mono" style="--mono-size:.95cqw;color:var(--grey)">${String(i + 1).padStart(2, "0")} / 07 · ${esc(p.cat)}</span>
+      <h3 class="disp" id="sTitle">${esc(p.title)}</h3><p style="font-weight:600;color:var(--ink)">${esc(p.sub)}</p><p>${esc(p.overview)}</p>
+      <div class="pipe">${p.pipe.map(s => `<span>${esc(s)}</span>`).join("→")}</div>
+      <div class="btns" style="margin-top:auto">${p.live ? `<a class="btn dark" href="${p.live}" target="_blank" rel="noopener">Open live app ↗</a>` : ""}<a class="btn light" href="https://github.com/Himakshsharma" target="_blank" rel="noopener">GitHub ↗</a></div></div>
+    <div class="r">${metricsHTML(p)}<h4>What it does</h4><ul>${p.features.map(f => `<li>${esc(f)}</li>`).join("")}</ul><h4>Stack</h4><div class="stack">${p.stack.map(s => `<span>${esc(s)}</span>`).join("")}</div></div>`;
+  sheet.classList.add("open"); sheet.querySelector("[data-close]").focus({ preventScroll:true });
+}
+const closeSheet = () => sheet.classList.remove("open");
+sheet.addEventListener("click", e => { if (e.target.closest("[data-close]")) closeSheet(); });
+document.addEventListener("click", e => { const b = e.target.closest("[data-open]"); if (b) openSheet(+b.dataset.open); });
+
+/* pages + dots */
+const track = $("#track"), pages = $$(".page"), dots = $("#dots");
+const COLORS = ["#cfcdc6", "#121212", "#e9a07a", "#e8b2c0"], NAMES = ["Home", "Work", "About", "Contact"];
+dots.innerHTML = NAMES.map((n, i) => `<button type="button" style="--c:${COLORS[i]}" aria-label="${n}" data-go="${i}"></button>`).join("");
+let page = 0, mode = "device";
+function go(i) {
+  i = Math.max(0, Math.min(pages.length - 1, i));
+  if (mode === "flat") { pages[i].scrollIntoView({ behavior:"smooth" }); return; }
+  if (mode === "folded") { setMode("device"); }
+  show(i);
+}
+function show(i) {
+  closeSheet(); page = i;
+  track.style.transform = `translateX(${-100 * i}%)`;
+  $$("button", dots).forEach((d, k) => d.setAttribute("aria-current", String(k === i)));
+  pages.forEach((p, k) => p.inert = k !== i);
+  history.replaceState(null, "", i ? "#" + pages[i].id : location.pathname);
+}
+document.addEventListener("click", e => { const b = e.target.closest("[data-go]"); if (b) go(+b.dataset.go); });
+
+/* modes: open device / folded cover / flat page */
+const small = matchMedia("(max-width: 820px), (max-height: 520px)");
+function setMode(m) {
+  if (small.matches && m !== "flat") m = "flat";
+  mode = m;
+  document.body.classList.toggle("folded", m === "folded");
+  document.body.classList.toggle("flat", m === "flat");
+  $$(".seg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === m)));
+  if (m === "flat") { pages.forEach(p => p.inert = false); track.style.transform = ""; closeSheet(); }
+  else show(page);
+  fitName();
+}
+document.addEventListener("click", e => { const b = e.target.closest("[data-mode]"); if (b) setMode(b.dataset.mode); });
+small.addEventListener("change", () => setMode(small.matches ? "flat" : "device"));
+
+/* input: keys, wheel, swipe */
+document.addEventListener("keydown", e => {
+  if (mode !== "device") return;
+  if (e.key === "Escape") closeSheet();
+  if (sheet.classList.contains("open")) return;
+  if (e.key === "ArrowRight" || e.key === "PageDown") go(page + 1);
+  if (e.key === "ArrowLeft" || e.key === "PageUp") go(page - 1);
+});
+let wheelLock = 0, acc = 0;
+addEventListener("wheel", e => {
+  if (mode !== "device" || sheet.classList.contains("open")) return;
+  const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+  acc += d; const now = performance.now();
+  if (now < wheelLock) { acc = 0; return; }
+  if (Math.abs(acc) > 50) { go(page + Math.sign(acc)); acc = 0; wheelLock = now + 850; }
+}, { passive:true });
+let sx = null;
+$("#screen").addEventListener("pointerdown", e => { if (mode === "device" && e.pointerType !== "mouse") sx = e.clientX; });
+addEventListener("pointerup", e => { if (sx == null) return; const dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 50) go(page - Math.sign(dx)); });
+
+/* keep the name on one line beside the portrait */
+const h1 = $(".hero h1"), copy = $(".hero .copy");
+function fitName() {
+  h1.style.fontSize = "";
+  if (mode === "flat") return;
+  requestAnimationFrame(() => { const avail = copy.clientWidth, need = h1.scrollWidth; if (need > avail) h1.style.fontSize = (parseFloat(getComputedStyle(h1).fontSize) * avail / need * .98) + "px"; });
+}
+addEventListener("resize", fitName);
+if (document.fonts) document.fonts.ready.then(fitName);
+
+/* live IST clock */
+const tick = () => { const t = new Date().toLocaleTimeString("en-GB", { hour:"2-digit", minute:"2-digit", timeZone:"Asia/Kolkata" }); $$(".clock").forEach(c => c.textContent = t); };
+tick(); setInterval(tick, 20000);
+
+/* copy email */
+$("#copyMail").addEventListener("click", async e => {
+  try { await navigator.clipboard.writeText("himaksh009@gmail.com"); e.target.textContent = "Copied ✓"; }
+  catch { e.target.textContent = "himaksh009@gmail.com"; }
+  setTimeout(() => e.target.textContent = "Copy email", 2200);
+});
+
+/* start on the page in the URL */
+const start = Math.max(0, pages.findIndex(p => "#" + p.id === location.hash));
+page = start; setMode(small.matches ? "flat" : "device");
+if (mode === "flat" && start) pages[start].scrollIntoView();
+})();
+</script>
+</body>
+</html>
